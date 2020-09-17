@@ -1,43 +1,48 @@
-from flask import Flask,jsonify
+# from flask i want to import flask ,render_template,request
+from flask import Flask, render_template, request,jsonify
+
+#declare the app
 app = Flask(__name__)
 
-@app.route('/electric_bill',methods=['GET,POST'])
-def electric_bill(sno,name,old,new):
-    if request.methode == 'GET':
-        if len(electric_bill)>0:
-            return jsonify(electric_bill)
+#start an app route
+@app.route('/')
+#declare a function
+def main():
+    return render_template('app.html')
+
+#form submission route
+@app.route('/send', methods=['POST'])
+def send():
+    if request.method == 'POST':
+        # start pulling out data from input form input
+        num1 = request.form['num1']
+        num2 = request.form['num2']
+        num3 = request.form['num3']
+    #calculation IF statement  
+        units = float(num3)-float(num2)
+        if units<=100:
+            surcharge=25
+            amount = float(units*0.90)
+            net_amount = amount+surcharge
+            return render_template('app.html',amount=amount , surcharge=surcharge,net_amount=net_amount )
+        elif units>100 and units<=300:
+            surcharge=35
+            amount = float(units*1.50)
+            net_amount = amount+surcharge
+            return render_template('app.html',amount=amount, surcharge=surcharge,net_amount=net_amount )
+        elif units>300 and units<=500:
+            surcharge=45
+            amount=float(units*2.75)
+            net_amount = amount+surcharge
+            return render_template('app.html',amount=amount,surcharge=surcharge, net_amount=net_amount)
         else:
-            'Nothing found',404
+            units>500
+            surcharge=100
+            amount=float(units*4.50)
+            net_amount = amount+surcharge
+            return render_template('app.html',amount=amount ,surcharge=surcharge, net_amount=net_amount)
 
-    sno=5
-    name='moni'
-    old=2
-    new=2
-    units = new-old
-    if units<=100:
-        amount=units*0.90
-        surcharge=25
-    elif units>100 and units<=300:
-        amount=units*1.50
-        surcharge=35
-    elif units>300 and units<=500:
-        amount=units*2.75
-        surcharge=45
-    else:
-        units>500
-        amount=units*4.50
-        surcharge=100
+        
 
-    net_amount = amount+surcharge
-    print('Electrical information is:')
-    print('name of the customer=',name)
-    print('older reading=',old)
-    print('newer reading=',new)
-    print('total no of units=',units)
-    print('total payable amount=',netamount)
-
-    return jsonify('electric_bill')
-    
 if __name__ == '__main__':
-    app.run(debug=True)
-
+    app.run(debug=True)                
