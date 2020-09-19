@@ -31,6 +31,24 @@
    <!-- Form -->
    <div class="container">
        <form action="/send" method="POST">
+
+         <label for="Name">Enter your Name</label>
+         <input
+           type="text"
+           placeholder="Enter your Name"
+           class="u-full-width"
+           name="name"
+         />
+
+         <label for="MD">Enter your md number</label>
+         <input
+           type="text"
+           placeholder="Enter your md number"
+           class="u-full-width"
+           name="MD"
+         />
+
+
          <label for="Number One">Service Number</label>
          <input
            type="text"
@@ -55,15 +73,36 @@
            name="num3"
          />
 
-         
+         <label for="Number four">sanction_load</label>
+         <input
+           type="text"
+           placeholder="sanction_load"
+           class="u-full-width"
+           name="num4"
+         />
 
+         <label for="Solar">Solar</label>
+         <input
+           type="text"
+           placeholder="type yes or no"
+           class="u-full-width"
+           name="Solar"
+         />
+
+         
          <input type="submit" value="Submit" id="calc_btn" />
 
 
          <div class="alert">
 
-             <p>Total number of units is</p>{{  amount  }}
-             <p>Total Payable Amount is</p>{{  net_amount }}
+             <p>1. Welcome to see your this month electricity bill :</p>{{ name }}
+             <p>N O T E :</p>{{  G  }}
+             <p>2. Total number of units is:</p>{{  units  }}
+             <p>3. Total Energy charges is:</p>{{  total_amount }}
+             <p>4. Total Fixed charges is:</p>{{  total_sanction_load }}
+             <p>N O T E :</p>{{ s }}
+             <p>5. This month electricty bill for you is:</p>{{ bill }}
+             <p>:) Thank you</p>{{ name }}<p>Come Back again, Have a great day! </p>
 
          </div>     
   </body>
